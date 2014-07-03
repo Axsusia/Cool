@@ -1,9 +1,7 @@
-/*
- *  
- *
+/**
  * 
  */
-(function(window, document){
+(function (window, document) {
 
 	/* ===============================================================
 	 * Object Add
@@ -11,11 +9,25 @@
 	 * + prototype.extend()
 	 * + 
 	 * =============================================================== */
-	Object.prototype.method = function() {
-		
-	}
-	Object.prototype.extend = function() {
+	/**
+	 * 프로토타입 확장 메소드 
+	 *
+	 * @author SeoSiwon
+	 * @param 
+	 */
+	Object.prototype.method = function () {
 
+	}
+	/**
+	 * Object 프로토타입 확장
+	 * @author SeoSiwon
+	 * @param tagetObj
+	 */
+	Object.prototype.extend = function (targetObj) {
+		if (targetObj == null) return new Object();
+		var obj = new Object();
+		obj.prototype = targetObj.prototype;
+		return obj;
 	}
 
 	/* ===============================================================
@@ -24,10 +36,10 @@
 	 * + create()
 	 * + 
 	 * =============================================================== */
-	Element.attribute = function() {
+	Element.attribute = function () {
 
 	}
-	Element.create = function(tagName, attributes) {
+	Element.create = function (tagName, attributes) {
 		return document.createElement(tagName);
 	}
 
@@ -42,20 +54,21 @@
 		// }
 	}
 
-	Cool.init = function(selecter) {
+	Cool.init = function (selecter) {
 		cosnole.log(this);
 		console.log("selecter : " + selecter);
 	}
 
-	Cool.fn = function() {}
-	Cool.url = function() {}
-	Cool.dom = function() {}
-	Cool.ajax = function() {}
+	Cool.fn = function () {}
+	Cool.url = function () {}
+	Cool.dom = function () {}
+	Cool.ajax = function () {}
 
 	window.Cool = Cool;
+	window.$C = Cool;
 	console.log("end**********");
-})(window, document);
+}) (window, document);
 
-Cool.dom.find = function() {
+Cool.dom.find = function () {
 	console.log("find");
 }
