@@ -5,37 +5,37 @@
  * + 
  * =============================================================== */
 /**
- * 프로토타입 확장 메소드 
- *
- * @author SeoSiwon
- * @param 
- */
-Object.prototype.method = function () {
-
-}
-/**
  * Object 프로토타입 확장
  * @author SeoSiwon
  * @param tagetObj
  */
-Object.prototype.extend = function (targetObj) {
-	if (targetObj == null) return new Object();
+Object.prototype.extend = function(targetObj) {
+	if (!targetObj) return new Object();
 	var obj = new Object();
 	obj.prototype = targetObj.prototype;
 	return obj;
 }
 
-	Object.create = Object.create || function(o){
+/**
+ * 객체 상속
+ * ECMAScript 5 에 반영 되어 있음.
+ * Prototypal Inheritance
+ */
+Object.create = Object.create || function(o) {
 	var F = function(){};
 	F.prototype = o;
 	return new F();
 }
 
-Function.prototype.method = function(name, func){
+/**
+ * 프로토타입 메소드 추가
+ */ 
+Function.prototype.method = function(name, func) {
 	this.prototype[name] = func;
 	return this;
 }
-(function (window, document) {
+
+(function(window, document) {
 
 	/* ===============================================================
 	 * Element Add
@@ -43,16 +43,16 @@ Function.prototype.method = function(name, func){
 	 * + create()
 	 * + 
 	 * =============================================================== */
-	Element.attribute = function () {
+	Element.attribute = function() {
 
 	}
-	Element.create = function (tagName, attributes) {
+	Element.create = function(tagName, attributes) {
 		return document.createElement(tagName);
 	}
 
 	console.log(window);
 	console.log("*************");	
-	var Cool = Cool || function (selecter) {
+	var Cool = Cool || function(selecter) {
 		console.log(this);
 		console.log(selecter);
 		return this.call(Cool, selecter);
@@ -61,7 +61,7 @@ Function.prototype.method = function(name, func){
 		// }
 	}
 
-	Cool.init = function (selecter) {
+	Cool.init = function(selecter) {
 		cosnole.log(this);
 		console.log("selecter : " + selecter);
 	}
@@ -74,8 +74,8 @@ Function.prototype.method = function(name, func){
 	window.Cool = Cool;
 	window.$C = Cool;
 	console.log("end**********");
-}) (window, document);
+})(window, document);
 
-Cool.dom.find = function () {
+Cool.dom.find = function() {
 	console.log("find");
 }
